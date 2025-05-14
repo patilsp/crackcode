@@ -4,39 +4,38 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import {
-  AlbumIcon,
-  Book,
-  Code,
-  ComponentIcon,
-  Heart,
-  Layout,
-  LayoutTemplate,
-  Pencil,
-  Server,
-  FileCode2,
+  BookOpen,
+  GraduationCap,
   Code2,
-  FileJson,
-  TerminalSquare,
+  Braces,
+  Server,
+  Cpu,
+  Library,
   FileText,
+  MessagesSquare,
+  Files,
+  NotebookPen,
+  Users,
+  Rocket,
+  TerminalSquare,
 } from 'lucide-react';
 
 export const linkItems: LinkItemType[] = [
   {
-    icon: <AlbumIcon />,
+    icon: <MessagesSquare />,
     text: 'Blog',
     url: '/blog',
     active: 'nested-url',
   },
   {
+    icon: <NotebookPen />,
     text: 'Contact',
     url: '/contact',
-    icon: <LayoutTemplate />,
     active: 'url',
   },
- 
   {
     type: 'icon',
-    url: 'https://github.com/patilsp/carckcode',
+    url: 'https://github.com/patilsp',
     text: 'Github',
     icon: (
       <svg role="img" viewBox="0 0 24 24" fill="currentColor">
@@ -50,117 +49,106 @@ export const linkItems: LinkItemType[] = [
 export const baseOptions: BaseLayoutProps = {
   nav: {
     title: (
-      <>
-        <Image
-          src="/assets/images/logo.png"
-          alt="logo"
-          height={80}
-          width={100}
-          className="object-contain"
-        />
-      </>
+      <Image
+        src="/assets/images/logo.png"
+        alt="logo"
+        height={80}
+        width={100}
+        className="object-contain"
+      />
     ),
   },
-
   links: [
     {
       type: 'menu',
-      text: 'Documentation',
-      // url: '/docs/ui',
+      text: 'Languages',
       items: [
         {
-          icon: <Book />,
-          text: 'Getting Started',
-          description: 'Learn to use Crack The Code docs site.',
-          url: '/docs/ui',
+          icon: <FileText />,
+          text: 'HTML',
+          description: 'Build structured and accessible content with HTML.',
+          url: '/docs/languages/html',
         },
-       
         {
-          icon: <ComponentIcon />,
-          text: 'Components',
-          description: 'Add interactive experience to your docs.',
-          url: '/docs/ui/components',
-        
+          icon: <FileText />,
+          text: 'CSS',
+          description: 'Style your sites using modern and responsive CSS.',
+          url: '/docs/languages/css',
+        },
+        {
+          icon: <Braces />,
+          text: 'JavaScript',
+          description: 'Control browser logic and user interactions.',
+          url: '/docs/languages/javascript',
+        },
+        {
+          icon: <Cpu />,
+          text: 'React',
+          description: 'Create fast, component-driven user interfaces.',
+          url: '/docs/languages/react',
         },
         {
           icon: <Server />,
-          text: 'OpenAPI',
-          description:
-            'Generate interactive playgrounds and docs for your OpenAPI schema.',
-          url: '/docs/ui/openapi',
-        
+          text: 'Next.js',
+          description: 'Full-stack React framework for production apps.',
+          url: '/docs/languages/nextjs',
         },
         {
-          icon: <Pencil />,
-          text: 'Markdown',
-          description: 'Learn the writing format/syntax of Fumadocs.',
-          url: '/docs/ui/markdown',
-          menu: {
-            className: 'lg:col-start-3 lg:row-start-1',
-          },
-        },
-        {
-          icon: <Layout />,
-          text: 'Layouts',
-          description: 'See the available layouts of Fumadocs UI.',
-          url: '/docs/ui/layouts/docs',
-         
+          icon: <TerminalSquare />,
+          text: 'Node.js',
+          description: 'Run JavaScript backend services with Node.js.',
+          url: '/docs/languages/nodejs',
         },
       ],
     },
     {
       type: 'menu',
       text: 'Resources',
-      // url: '/docs/languages',
       items: [
         {
-          icon: <FileCode2 />,
-          text: 'HTML',
-          description: 'The structure of the web — learn semantic HTML.',
-          url: '/docs/languages/html',
+          icon: <BookOpen />,
+          text: 'Docs Guide',
+          description: 'Master the Crack The Code documentation platform.',
+          url: '/docs/ui',
         },
         {
-          icon: <FileText />,
-          text: 'CSS',
-          description: 'Style your web pages with modern CSS techniques.',
-          url: '/docs/languages/css',
+          icon: <Files />,
+          text: 'Cheat Sheets',
+          description: 'Quick-reference syntax and commands for developers.',
+          url: '/docs/ui/cheatsheets',
         },
         {
           icon: <Code2 />,
-          text: 'JavaScript',
-          description: 'Add interactivity to your web applications.',
-          url: '/docs/languages/javascript',
+          text: 'Problems',
+          description: 'Solve coding challenges with detailed explanations.',
+          url: '/docs/ui/problems',
         },
         {
-          icon: <TerminalSquare />,
-          text: 'React',
-          description: 'Build fast and reactive UIs with React.js.',
-          url: '/docs/languages/react',
-       
+          icon: <Library />,
+          text: 'Assessments',
+          description: 'Evaluate your learning with quizzes and tasks.',
+          url: '/docs/ui/markdown',
         },
         {
-          icon: <Code />,
-          text: 'Next.js',
-          description: 'The React framework for production-grade apps.',
-          url: '/docs/languages/nextjs',
-    
+          icon: <Users />,
+          text: 'Community Discuss',
+          description: 'Join the conversation with fellow developers.',
+          url: '/docs/ui/layouts/docs',
         },
         {
-          icon: <Server />,
-          text: 'Node.js',
-          description: 'Run JavaScript on the server with Node.js.',
-          url: '/docs/languages/nodejs',
-          // menu: {
-          //   className: 'lg:col-start-3',
-          // },
+          icon: <NotebookPen />,
+          text: 'Interview Prep',
+          description: 'Ace interviews with Q&A and sample problems.',
+          url: '/docs/ui/interview',
+        },
+        {
+          icon: <Rocket />,
+          text: 'Roadmap',
+          description: 'Track your learning journey step-by-step.',
+          url: '/docs/ui/roadmap',
         },
       ],
     },
-    // {
-    //   text: 'Blog',
-    //   url: '/blog',
-    //   active: 'nested-url',
-    // },
     ...linkItems,
   ],
 };

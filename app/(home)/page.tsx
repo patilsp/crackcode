@@ -7,7 +7,7 @@ import Banner from "@/components/Banner";
 
 export default function HomePage() {
   return (
-    <main className="flex flex-1 flex-col justify-center text-center">
+    <main className="flex flex-1 flex-col justify-start text-left">
       <Banner />
        <div className="flex flex-col border-b border-r md:flex-row *:border-l *:border-t">
         <div className="group flex flex-col min-w-0 flex-1 pt-8 **:transition-colors">
