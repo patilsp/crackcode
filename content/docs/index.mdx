@@ -1,13 +1,42 @@
 ---
-title: Hello World
-description: Your first document
+title: HTML Basics
+description: Learn the fundamentals of HTML for web development interviews.
 ---
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
+import { CodeBlock } from 'fumadocs-ui/components/code-block' // adjust based on your setup
 
-## What is Next?
+# HTML - HyperText Markup Language
 
-<Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.vercel.app" />
-</Cards>
+HTML is the standard language for creating web pages and web applications.
+
+## 🧱 Basic Structure of an HTML Document
+
+<CodeBlock language="html">
+{`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My HTML Page</title>
+</head>
+<body>
+  <h1>Hello, world!</h1>
+</body>
+</html>`}
+</CodeBlock>
+
+## 📌 Common HTML Tags
+
+- `<h1>` to `<h6>`: Headings
+- `<p>`: Paragraph
+- `<a>`: Anchor (hyperlink)
+- `<img>`: Image
+- `<ul>`, `<ol>`, `<li>`: Lists
+- `<div>`, `<span>`: Containers
+
+## ❓ Interview Tip
+
+> What’s the difference between `<div>` and `<section>`?
+>
+> Use `<section>` for semantically grouped content. Use `<div>` for generic containers.
+
