@@ -66,7 +66,7 @@ export const baseOptions: BaseLayoutProps = {
     {
       type: 'menu',
       text: 'Documentation',
-      url: '/docs/ui',
+      // url: '/docs/ui',
       items: [
         {
           icon: <Book />,
@@ -111,7 +111,7 @@ export const baseOptions: BaseLayoutProps = {
     {
       type: 'menu',
       text: 'Resources',
-      url: '/docs/languages',
+      // url: '/docs/languages',
       items: [
         {
           icon: <FileCode2 />,
