@@ -82,8 +82,8 @@ export default function Showcase() {
               <div className="flex items-center gap-5">
                 <div className={cn(
                   "p-3 rounded-xl bg-opacity-20",
-                  feature.color.replace("text", "bg"),
-                  "group-hover:scale-110 transition-transform duration-300"
+                  feature.color.replace("text"),
+                  "bg-gray-100 group-hover:scale-110 transition-transform duration-300"
                 )}>
                   <feature.icon className={`w-8 h-8 ${feature.color}`} />
                 </div>
