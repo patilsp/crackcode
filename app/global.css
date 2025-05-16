@@ -14,3 +14,11 @@
     color: #8546F0;
     font-weight: 600;
 }
+@media (hover: hover) {
+    @supports (color: color-mix(in lab, #8546F0,#8546F0)) {
+        .hover\:text-fd-accent-foreground\/80:hover {
+            color: #8546F0;
+            font-weight: 600;
+        }
+    }
+}

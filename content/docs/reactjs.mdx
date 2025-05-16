@@ -1,0 +1,280 @@
+---
+title: React.js
+description: Master React.js fundamentals and advanced concepts for modern web development.
+---
+
+## 🌐 Introduction 
+
+React is a JavaScript library for building user interfaces, particularly single-page applications. It's maintained by Facebook and a community of individual developers and companies. React allows developers to create large web applications that can change data without reloading the page.
+
+## 📚 React.js Core Concepts
+
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mt-6">
+
+### 🎯 Fundamentals
+- Components & Props
+- State Management
+- Lifecycle Methods
+- Hooks
+- JSX Syntax
+- Event Handling
+
+### 🎨 Advanced Features
+- Context API
+- Refs & Portals
+- Error Boundaries
+- Code Splitting
+- Performance Optimization
+- Custom Hooks
+
+### ⚡ State Management
+- Redux
+- Zustand
+- Jotai
+- Recoil
+- MobX
+- Context + useReducer
+
+### 🛠️ Development & Tools
+- Create React App
+- Vite
+- Testing Libraries
+- DevTools
+- TypeScript Integration
+- Build Tools
+
+</div>
+
+---
+
+## 🎯 Key React Features
+
+### 1. Components
+React components are the building blocks of React applications:
+```typescript
+// Functional Component
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+// Class Component
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello, {this.props.name}</h1>;
+  }
+}
+```
+
+### 2. Hooks
+React Hooks allow you to use state and other React features in functional components:
+```typescript
+// useState Hook
+function Counter() {
+  const [count, setCount] = useState(0);
+  return (
+    <button onClick={() => setCount(count + 1)}>
+      Count: {count}
+    </button>
+  );
+}
+
+// useEffect Hook
+function DataFetcher() {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    fetch('/api/data')
+      .then(res => res.json())
+      .then(setData);
+  }, []);
+  return <div>{data}</div>;
+}
+```
+
+### 3. Context API
+Share state across components without prop drilling:
+```typescript
+const ThemeContext = React.createContext('light');
+
+function App() {
+  return (
+    <ThemeContext.Provider value="dark">
+      <ThemedButton />
+    </ThemeContext.Provider>
+  );
+}
+
+function ThemedButton() {
+  const theme = useContext(ThemeContext);
+  return <button className={theme}>Themed Button</button>;
+}
+```
+
+### 4. Custom Hooks
+Create reusable logic with custom hooks:
+```typescript
+function useWindowSize() {
+  const [size, setSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return size;
+}
+```
+
+### 5. Performance Optimization
+Techniques to optimize React applications:
+```typescript
+// React.memo for component memoization
+const MemoizedComponent = React.memo(function MyComponent(props) {
+  return <div>{props.value}</div>;
+});
+
+// useMemo for expensive calculations
+function ExpensiveComponent({ data }) {
+  const processedData = useMemo(() => {
+    return expensiveOperation(data);
+  }, [data]);
+  return <div>{processedData}</div>;
+}
+
+// useCallback for function memoization
+function ParentComponent() {
+  const handleClick = useCallback(() => {
+    // Handle click
+  }, []);
+  return <ChildComponent onClick={handleClick} />;
+}
+```
+
+### 6. Error Boundaries
+Handle errors gracefully in React components:
+```typescript
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <h1>Something went wrong.</h1>;
+    }
+    return this.props.children;
+  }
+}
+```
+
+### 7. Code Splitting
+Split your code into smaller chunks:
+```typescript
+// Dynamic import
+const DynamicComponent = React.lazy(() => import('./DynamicComponent'));
+
+function App() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <DynamicComponent />
+    </Suspense>
+  );
+}
+```
+
+### 8. Refs and Portals
+Access DOM elements and render outside the component hierarchy:
+```typescript
+// Refs
+function TextInput() {
+  const inputRef = useRef();
+  return <input ref={inputRef} />;
+}
+
+// Portals
+function Modal({ children }) {
+  return ReactDOM.createPortal(
+    children,
+    document.getElementById('modal-root')
+  );
+}
+```
+
+## 🎨 Best Practices
+
+### 1. Project Structure
+```
+my-react-app/
+├── src/
+│   ├── components/
+│   │   ├── common/
+│   │   └── features/
+│   ├── hooks/
+│   ├── context/
+│   ├── utils/
+│   ├── pages/
+│   └── assets/
+├── public/
+└── tests/
+```
+
+### 2. Component Design
+- Keep components small and focused
+- Use composition over inheritance
+- Implement proper prop types
+- Follow the single responsibility principle
+- Use proper naming conventions
+
+### 3. State Management
+- Choose the right state management solution
+- Keep state as local as possible
+- Use proper state initialization
+- Implement proper state updates
+- Handle loading and error states
+
+### 4. Performance
+- Implement proper memoization
+- Use proper key props
+- Optimize re-renders
+- Implement proper code splitting
+- Use proper lazy loading
+
+## 🛠️ Development Tools
+
+### 1. Essential Tools
+- React Developer Tools
+- ESLint
+- Prettier
+- TypeScript
+- Jest
+- React Testing Library
+
+### 2. Build Tools
+- Vite
+- Webpack
+- Babel
+- PostCSS
+- ESLint
+- Prettier
+
+### 3. Testing Tools
+- Jest
+- React Testing Library
+- Cypress
+- MSW (Mock Service Worker)
+- Storybook
+
+---

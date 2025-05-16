@@ -1,54 +1,289 @@
 ---
 title: JavaScript
-description: The ultimate JavaScript interview prep guide. Covers syntax, DOM, async, and modern JS patterns every developer must know.
+description: Master JavaScript fundamentals and advanced concepts for web development interviews.
 ---
 
-## ⚡ JavaScript: Interview Essentials
+# 🌐 Introduction 
 
-**JavaScript** is the backbone of modern web development. Mastering these concepts will help you ace both **technical screens** and **onsite interviews**.
+JavaScript is a high-level, interpreted programming language that is essential for web development. It enables interactive web pages and is an essential part of web applications.
 
-## 💡 Why JavaScript Interviews Are Tough
-- **Conceptual Depth**: Closures, Prototypes, Event Loop
-- **Practical Skills**: DOM manipulation, API calls
-- **Tricky Gotchas**: Hoisting, `this` binding, type coercion
+## 📚 JavaScript Interview Preparation Topics
 
----
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mt-6">
 
-## 🎯 Core Topics (By Priority)
+### 🎯 Core Concepts
+- Variables & Data Types
+- Functions & Scope
+- Objects & Arrays
+- Control Flow
+- Error Handling
+- ES6+ Features
 
-### 🔥 High-Priority (90% of Questions)
-1. **Variables & Scoping**
-   - `var` vs `let`/`const`
-   - Temporal Dead Zone (TDZ)
-   - Block vs Function scope
-
-2. **Functions**
-   - Arrow functions (`=>`)
-   - Higher-Order Functions
-   - IIFEs (Immediately Invoked Function Expressions)
-
-3. **Arrays & Objects**
-   - Destructuring `[...arr]`, `{...obj}`
-   - Essential methods: `map`, `filter`, `reduce`
-
-4. **Asynchronous JS**
-   - Callback Hell ➔ Promises ➔ Async/Await
-   - Fetch API & Error Handling
-
-### ⚡ Medium-Priority
-- **DOM Manipulation**
-  - Event Bubbling/Capturing
-  - `event.preventDefault()`
-  
-- **ES6+**
-  - Template Literals
-  - Optional Chaining (`?.`)
-  - Nullish Coalescing (`??`)
-
-### 🧠 Advanced (Senior Roles)
-- Prototypal Inheritance
+### 🎨 Advanced Features
+- Asynchronous Programming
+- Promises & Async/Await
+- Event Loop
+- Closures
+- Prototypes
 - Memory Management
-- Web Workers
+
+### ⚡ Performance & Best Practices
+- Code Optimization
+- Design Patterns
+- Testing Strategies
+- Debugging Techniques
+- Security Best Practices
+- Performance Monitoring
+
+### 🛠️ Tools & Technologies
+- Node.js
+- Package Managers
+- Build Tools
+- Testing Frameworks
+- Debugging Tools
+- Development Environment
+
+</div>
+
+---
+
+## Top 40 JavaScript Interview Questions and Answers
+
+### 1. What is the difference between `let`, `const`, and `var`?
+```javascript
+// var - function scoped, can be redeclared
+var x = 1;
+var x = 2; // allowed
+
+// let - block scoped, cannot be redeclared
+let y = 1;
+let y = 2; // SyntaxError
+
+// const - block scoped, cannot be reassigned
+const z = 1;
+z = 2; // TypeError
+```
+
+### 2. What is hoisting in JavaScript?
+Hoisting is JavaScript's behavior of moving declarations to the top:
+```javascript
+console.log(x); // undefined
+var x = 5;
+
+// Equivalent to:
+var x;
+console.log(x);
+x = 5;
+```
+
+### 3. What is the difference between `==` and `===`?
+- `==` performs type coercion
+- `===` checks value and type
+```javascript
+1 == "1"    // true
+1 === "1"   // false
+```
+
+### 4. What is closure in JavaScript?
+A closure is a function that has access to its outer function's variables:
+```javascript
+function outer() {
+  let count = 0;
+  return function() {
+    return count++;
+  }
+}
+const counter = outer();
+```
+
+### 5. What is the Event Loop?
+The Event Loop is JavaScript's concurrency model:
+```javascript
+console.log('1');
+setTimeout(() => console.log('2'), 0);
+Promise.resolve().then(() => console.log('3'));
+console.log('4');
+// Output: 1, 4, 3, 2
+```
+
+### 6. What are Promises?
+Promises handle asynchronous operations:
+```javascript
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => resolve('Done!'), 1000);
+});
+
+promise
+  .then(result => console.log(result))
+  .catch(error => console.error(error));
+```
+
+### 7. What is async/await?
+Async/await is syntactic sugar for Promises:
+```javascript
+async function getData() {
+  try {
+    const response = await fetch('api/data');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+```
+
+### 8. What is the difference between `null` and `undefined`?
+- `undefined`: Variable declared but not assigned
+- `null`: Intentional absence of value
+```javascript
+let a;          // undefined
+let b = null;   // null
+```
+
+### 9. What is the `this` keyword?
+`this` refers to the object that is executing the current function:
+```javascript
+const obj = {
+  name: 'John',
+  greet() {
+    console.log(`Hello, ${this.name}`);
+  }
+};
+```
+
+### 10. What is prototypal inheritance?
+JavaScript uses prototype-based inheritance:
+```javascript
+function Animal(name) {
+  this.name = name;
+}
+
+Animal.prototype.speak = function() {
+  console.log(`${this.name} makes a sound.`);
+};
+
+class Dog extends Animal {
+  speak() {
+    console.log(`${this.name} barks.`);
+  }
+}
+```
+
+### 11. What is the difference between `map`, `filter`, and `reduce`?
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+// map - transforms each element
+const doubled = numbers.map(n => n * 2);
+
+// filter - selects elements
+const even = numbers.filter(n => n % 2 === 0);
+
+// reduce - reduces to single value
+const sum = numbers.reduce((acc, n) => acc + n, 0);
+```
+
+### 12. What is the difference between `call`, `apply`, and `bind`?
+```javascript
+const person = {
+  name: 'John',
+  greet(greeting) {
+    console.log(`${greeting}, ${this.name}`);
+  }
+};
+
+person.greet.call({name: 'Jane'}, 'Hello');
+person.greet.apply({name: 'Jane'}, ['Hello']);
+const greetJane = person.greet.bind({name: 'Jane'});
+```
+
+### 13. What is the difference between `setTimeout` and `setInterval`?
+```javascript
+// setTimeout - runs once after delay
+setTimeout(() => console.log('Hello'), 1000);
+
+// setInterval - runs repeatedly
+const interval = setInterval(() => console.log('Hello'), 1000);
+clearInterval(interval); // Stop interval
+```
+
+### 14. What is the difference between `localStorage` and `sessionStorage`?
+```javascript
+// localStorage - persists until cleared
+localStorage.setItem('key', 'value');
+
+// sessionStorage - cleared when session ends
+sessionStorage.setItem('key', 'value');
+```
+
+### 15. What is the difference between `let` and `const` in loops?
+```javascript
+// let - new binding each iteration
+for (let i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 100);
+}
+
+// const - error in for loop
+for (const i = 0; i < 3; i++) { // TypeError
+  console.log(i);
+}
+```
+
+### 16. What is the difference between `Object.freeze()` and `Object.seal()`?
+```javascript
+const obj = { name: 'John' };
+
+// freeze - can't modify properties
+Object.freeze(obj);
+obj.name = 'Jane'; // No effect
+
+// seal - can modify existing properties
+Object.seal(obj);
+obj.name = 'Jane'; // Works
+```
+
+### 17. What is the difference between `for...in` and `for...of`?
+```javascript
+const arr = ['a', 'b', 'c'];
+
+// for...in - iterates over enumerable properties
+for (let index in arr) {
+  console.log(index); // 0, 1, 2
+}
+
+// for...of - iterates over values
+for (let value of arr) {
+  console.log(value); // 'a', 'b', 'c'
+}
+```
+
+### 18. What is the difference between `async` and `defer` in script tags?
+```html
+<script async src="script.js"></script>
+<script defer src="script.js"></script>
+```
+- `async`: Loads and executes asynchronously
+- `defer`: Loads asynchronously but executes after HTML parsing
+
+### 19. What is the difference between `Object.create()` and `new`?
+```javascript
+// Object.create - creates new object with specified prototype
+const proto = { greet() { console.log('Hello'); } };
+const obj1 = Object.create(proto);
+
+// new - creates instance of constructor
+function Person() { this.greet = () => console.log('Hello'); }
+const obj2 = new Person();
+```
+
+### 20. What is the difference between `Array.from()` and `Array.of()`?
+```javascript
+// Array.from - creates array from array-like object
+const arr1 = Array.from('hello');
+
+// Array.of - creates array from arguments
+const arr2 = Array.of(1, 2, 3);
+```
 
 ---
 
@@ -63,26 +298,3 @@ description: The ultimate JavaScript interview prep guide. Covers syntax, DOM, a
    ```js
    Array.isArray(), Object.keys(), JSON.parse() 
    ```
----
-
-## 🎯 JavaScript Interview Questions & Answers
-
-## 🔥 Beginner Questions
-
-### 1. Difference between `let`, `const`, and `var`
-
-```js
-function declarationTest() {
-  var a = 1;       // Function-scoped
-  let b = 2;       // Block-scoped
-  const c = 3;     // Block-scoped + immutable
-  
-  if (true) {
-    var a = 4;     // Same variable (hoisted)
-    let b = 5;     // New block-scoped variable
-    const c = 6;   // New block-scoped constant
-    console.log(a, b, c); // 4, 5, 6
-  }
-  
-  console.log(a, b, c); // 4, 2, 3 (only 'a' leaked)
-}

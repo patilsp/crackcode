@@ -1,50 +1,494 @@
 ---
 title: CSS  
-description: Master CSS fundamentals for web development interviews. Learn what CSS is, why it matters, and key topics to study.  
----  
+description: Master CSS fundamentals for web development interviews.  
+--- 
 
-# 🎨 CSS: Styling the Web  
+## 🎨 What is CSS ?
 
-**CSS (Cascading Style Sheets)** is the language that styles HTML content, controlling layout, colors, fonts, and responsiveness.  
+Cascading Style Sheets (CSS) is primarily designed to separate web page content from its visual presentation. This allows for a consistent and adaptable design across multiple web pages. 
 
-## ✅ Why CSS Matters in Interviews  
-- **Core Frontend Skill**: Every website uses CSS.  
-- **Layout Challenges**: Interviewers test Flexbox/Grid knowledge.  
-- **Responsive Design**: Mobile-friendly UIs are mandatory.  
+## 📚 CSS Interview Preparation Topics
 
----  
+<Cards>
+  <Card title="🎯 Core Concepts" href="/docs/css-core-concepts">
+    - Master the box model 
+    - selectors, specificity 
+    - fundamental CSS properties.
+  </Card>
 
-## 📚 Key CSS Topics to Study  
+  <Card title="🖼️ Layout & Design" href="/docs/css-layout">
+    - Learn Flexbox 
+    - CSS Grid
+    - modern layout techniques for interview success.
+  </Card>
 
-### 1. **Selectors & Specificity**  
-- How to target HTML elements (classes, IDs, pseudo-classes).  
-- Specificity hierarchy (`!important`, inline styles, IDs > classes > elements).  
+  <Card title="⚡ Performance & Best Practices" href="/docs/css-best-practices">
+    - Discover optimization techniques 
+    - CSS architecture patterns.
+  </Card>
 
-### 2. **Box Model**  
-- `width`, `height`, `padding`, `border`, `margin`.  
-- `box-sizing: border-box` vs `content-box`.  
+  <Card title="🎭 Advanced Features" href="/docs/css-advanced">
+    - Dive into animations 
+    - transforms
+    - cutting-edge CSS features.
+  </Card>
 
-### 3. **Layout Systems**  
-- **Flexbox**: 1D layouts (align items, justify content).  
-- **CSS Grid**: 2D layouts (rows, columns, gaps).  
-- **Positioning**: `static`, `relative`, `absolute`, `fixed`, `sticky`.  
+  <Card title="📱 Responsive Design" href="/docs/css-responsive">
+    Build mobile-friendly interfaces with media queries and fluid layouts.
+  </Card>
 
-### 4. **Responsive Design**  
-- Media queries (`@media`).  
-- Relative units (`rem`, `vw`, `%`).  
-- Mobile-first vs desktop-first approaches.  
+  <Card title="🛠️ CSS Tools" href="/docs/css-tools">
+    Explore preprocessors, frameworks, and developer tools.
+  </Card>
+</Cards>
+---
 
-### 5. **Transitions & Animations**  
-- `transition` for simple effects.  
-- `@keyframes` for complex animations.  
+## Top 100 CSS Interview Questions and Answers
 
-### 6. **CSS Architecture**  
-- BEM naming convention.  
-- CSS-in-JS (Styled Components, Emotion).  
+### 1. What is CSS ?
+    Cascading Style Sheets (CSS) is primarily designed to separate web page content from its visual presentation.
 
----  
+### 2. What is the Box Model in CSS?
+The CSS Box Model is a fundamental concept that describes how elements are structured. Every element is treated as a box with:
+- Content: The actual content area
+- Padding: Clear space around the content
+- Border: A border around the padding
+- Margin: Clear space outside the border
 
-## 🚀 Interview Tips  
-- **Practice Layouts**: Recreate designs using Flexbox/Grid.  
-- **Debugging**: Learn Chrome DevTools for CSS inspection.  
-- **Performance**: Minimize repaints/reflows.  
+### 3. What is CSS Specificity and how does it work?
+CSS Specificity determines which CSS rule is applied by browsers when multiple rules target the same element. The hierarchy is:
+- Inline styles (highest priority)
+- IDs (#example)
+- Classes (.example), attributes, and pseudo-classes
+- Elements and pseudo-elements (lowest priority)
+
+Example:
+```css
+#header .nav p { color: blue; }    /* Specificity: 0,1,1,1 */
+.nav p { color: red; }            /* Specificity: 0,0,1,1 */
+p { color: green; }               /* Specificity: 0,0,0,1 */
+```
+
+### 4. What is the difference between display: none and visibility: hidden?
+- `display: none` - Removes the element from the document flow, taking up no space
+- `visibility: hidden` - Hides the element but maintains its space in the layout
+
+### 5. Explain CSS Box Sizing
+`box-sizing` property defines how the width and height of an element are calculated:
+- `content-box` (default): width/height only includes content
+- `border-box`: width/height includes content, padding, and border
+
+### 6. What is the difference between position: relative and position: absolute?
+- `position: relative`: Positions element relative to its normal position
+- `position: absolute`: Positions element relative to its nearest positioned ancestor
+
+### 7. What are CSS Pseudo-classes?
+Pseudo-classes are keywords that specify a special state of an element:
+```css
+a:hover { color: red; }      /* When mouse hovers */
+input:focus { border: blue; } /* When input is focused */
+li:first-child { }           /* First child element */
+```
+
+### 8. What is the difference between em and rem units?
+- `em`: Relative to the font-size of the element
+- `rem`: Relative to the font-size of the root element (html)
+
+### 9. What is CSS Flexbox?
+Flexbox is a one-dimensional layout method for arranging items in rows or columns:
+```css
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+```
+
+### 10. What is CSS Grid?
+CSS Grid is a two-dimensional layout system for creating complex web layouts:
+```css
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+```
+
+### 11. What are CSS Variables?
+CSS Variables (Custom Properties) allow you to store and reuse values:
+```css
+:root {
+  --primary-color: blue;
+  --spacing: 20px;
+}
+.element {
+  color: var(--primary-color);
+  margin: var(--spacing);
+}
+```
+
+### 12. What is the difference between margin and padding?
+- `margin`: Space outside the element's border
+- `padding`: Space between the element's content and border
+
+### 13. What is the z-index property?
+`z-index` controls the stacking order of positioned elements:
+- Higher values appear on top
+- Only works on positioned elements (relative, absolute, fixed)
+
+### 14. What are CSS Media Queries?
+Media queries allow you to apply different styles based on device characteristics:
+```css
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+}
+```
+
+### 15. What is the difference between inline and block elements?
+- `inline`: Takes only necessary width, doesn't start on new line
+- `block`: Takes full width, starts on new line
+
+### 16. What is the difference between transform and transition?
+- `transform`: Changes the element's appearance (rotate, scale, etc.)
+- `transition`: Animates the change between states
+
+### 17. What is the difference between :before and :after pseudo-elements?
+- `:before`: Inserts content before the element's content
+- `:after`: Inserts content after the element's content
+
+### 18. What is the difference between class and ID selectors?
+- `.class`: Can be used multiple times
+- `#id`: Must be unique in the document
+
+### 19. What is the difference between display: flex and display: grid?
+- `flex`: One-dimensional layout (row or column)
+- `grid`: Two-dimensional layout (rows and columns)
+
+### 20. What is the difference between position: fixed and position: sticky?
+- `fixed`: Positioned relative to viewport, stays in place during scroll
+- `sticky`: Toggles between relative and fixed based on scroll position
+
+### 21. What is the difference between CSS animations and transitions?
+- `transition`: Simple state changes (from one state to another)
+- `animation`: Complex movements with multiple keyframes
+```css
+/* Transition example */
+.button {
+  transition: all 0.3s ease;
+}
+
+/* Animation example */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+```
+
+### 22. What is the difference between vh, vw, and % units?
+- `vh`: Viewport height (1vh = 1% of viewport height)
+- `vw`: Viewport width (1vw = 1% of viewport width)
+- `%`: Percentage of parent element's size
+
+### 23. What is the difference between CSS reset and normalize.css?
+- `CSS Reset`: Removes all default browser styles
+- `Normalize.css`: Preserves useful defaults while fixing browser inconsistencies
+
+### 24. What is the difference between display: inline-block and display: inline?
+- `inline`: Can't set width/height, margins only horizontal
+- `inline-block`: Can set width/height, margins work in all directions
+
+### 25. What is the difference between CSS Grid's fr unit and percentage?
+- `fr`: Distributes available space proportionally
+- `%`: Fixed percentage of container width
+```css
+.grid {
+  grid-template-columns: 1fr 2fr 1fr; /* Flexible distribution */
+  /* vs */
+  grid-template-columns: 25% 50% 25%; /* Fixed percentages */
+}
+```
+
+### 26. What is the difference between CSS custom properties and preprocessor variables?
+- CSS Variables: Dynamic, can be changed with JavaScript
+- Preprocessor Variables: Static, processed at compile time
+```css
+/* CSS Custom Property */
+:root {
+  --color: blue;
+}
+.element {
+  color: var(--color);
+}
+
+/* SCSS Variable */
+$color: blue;
+.element {
+  color: $color;
+}
+```
+
+### 27. What is the difference between CSS Grid's auto-fit and auto-fill?
+- `auto-fit`: Collapses empty tracks
+- `auto-fill`: Maintains empty tracks
+```css
+.grid {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  /* vs */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+```
+
+### 28. What is the difference between CSS calc() and CSS variables?
+- `calc()`: Performs calculations at runtime
+- CSS Variables: Stores and reuses values
+```css
+.element {
+  width: calc(100% - 20px);
+  /* vs */
+  width: var(--container-width);
+}
+```
+
+### 29. What is the difference between CSS Grid's grid-area and grid-template-areas?
+- `grid-area`: Defines a single item's placement
+- `grid-template-areas`: Defines the overall grid layout
+```css
+.grid {
+  grid-template-areas: 
+    "header header"
+    "sidebar main"
+    "footer footer";
+}
+.header { grid-area: header; }
+```
+
+### 30. What is the difference between CSS backdrop-filter and filter?
+- `backdrop-filter`: Applies effects to area behind element
+- `filter`: Applies effects to element itself
+```css
+.modal {
+  backdrop-filter: blur(5px);
+  /* vs */
+  filter: blur(5px);
+}
+```
+
+### 31. Explain CSS Container Queries and their use cases
+Container Queries allow styling elements based on their container's size rather than the viewport. This is particularly useful for reusable components.
+
+```css
+@container (min-width: 400px) {
+  .card {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+@container (max-width: 399px) {
+  .card {
+    display: block;
+  }
+}
+```
+Use cases:
+- Reusable components that adapt to their container
+- Complex layouts with nested responsive elements
+- Design systems and component libraries
+
+### 32. What is CSS Houdini and how does it extend CSS capabilities?
+CSS Houdini is a set of APIs that allows developers to extend CSS by hooking into the browser's rendering engine.
+
+Key APIs:
+```javascript
+// Paint API
+registerPaint('my-gradient', class {
+  paint(ctx, size) {
+    const gradient = ctx.createLinearGradient(0, 0, size.width, size.height);
+    gradient.addColorStop(0, 'blue');
+    gradient.addColorStop(1, 'red');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, size.width, size.height);
+  }
+});
+
+// Usage in CSS
+.element {
+  background-image: paint(my-gradient);
+}
+```
+
+### 33. Explain CSS Scroll Snap and its implementation
+Scroll Snap provides control over scroll behavior, creating a more app-like experience.
+
+```css
+.container {
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+  display: flex;
+}
+
+.slide {
+  scroll-snap-align: start;
+  flex: 0 0 100%;
+}
+```
+Key properties:
+- `scroll-snap-type`: Defines scroll behavior
+- `scroll-snap-align`: Defines snap points
+- `scroll-snap-stop`: Controls whether scrolling can skip snap points
+
+### 34. What are CSS Logical Properties and when should they be used?
+Logical Properties provide writing-mode and direction-aware alternatives to physical properties.
+
+```css
+/* Physical properties */
+.element {
+  margin-top: 1rem;
+  padding-left: 1rem;
+  border-right: 1px solid black;
+}
+
+/* Logical properties */
+.element {
+  margin-block-start: 1rem;
+  padding-inline-start: 1rem;
+  border-inline-end: 1px solid black;
+}
+```
+Benefits:
+- Better support for RTL languages
+- Easier maintenance for multilingual sites
+- More semantic meaning
+
+### 35. Explain CSS Subgrid and its implementation
+Subgrid allows grid items to participate in their parent grid's layout.
+
+```css
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.grid-item {
+  display: grid;
+  grid-template-columns: subgrid;
+  /* Inherits parent's grid columns */
+}
+```
+Use cases:
+- Complex nested grid layouts
+- Consistent alignment across grid levels
+- Maintaining grid structure in nested components
+
+### 36. What is CSS Cascade Layers and how does it help with specificity?
+Cascade Layers provide a way to manage specificity and CSS organization.
+
+```css
+@layer base, components, utilities;
+
+@layer base {
+  .button { color: blue; }
+}
+
+@layer components {
+  .button { color: red; }
+}
+
+@layer utilities {
+  .button { color: green; }
+}
+```
+Benefits:
+- Better control over specificity
+- Organized CSS architecture
+- Easier maintenance of large codebases
+
+### 37. Explain CSS View Transitions API
+View Transitions API enables smooth transitions between different states of a page.
+
+```javascript
+// JavaScript
+document.startViewTransition(() => {
+  // Update DOM
+  updateContent();
+});
+
+// CSS
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: fade 0.5s;
+}
+```
+Use cases:
+- Page transitions
+- State changes
+- Content updates
+
+### 38. What is CSS Container Style Queries?
+Container Style Queries allow querying the computed styles of a container.
+
+```css
+@container style(--theme: dark) {
+  .card {
+    background: #333;
+    color: white;
+  }
+}
+
+@container style(--theme: light) {
+  .card {
+    background: white;
+    color: black;
+  }
+}
+```
+Benefits:
+- Theme-based styling
+- Dynamic style changes
+- Component-level theming
+
+### 39. Explain CSS Scroll-Driven Animations
+Scroll-Driven Animations allow animations to be controlled by scroll position.
+
+```css
+@keyframes slide-in {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+.element {
+  animation: slide-in linear;
+  animation-timeline: scroll();
+  animation-range: entry 25% cover 50%;
+}
+```
+Use cases:
+- Parallax effects
+- Scroll-triggered animations
+- Progressive content reveal
+
+### 40. What is CSS Anchor Positioning?
+Anchor Positioning allows elements to be positioned relative to other elements.
+
+```css
+.tooltip {
+  position: absolute;
+  anchor: --target;
+  top: anchor(bottom);
+  left: anchor(center);
+  translate: -50% 0;
+}
+
+.target {
+  anchor-name: --target;
+}
+```
+Benefits:
+- Complex positioning scenarios
+- Dynamic positioning
+- Better tooltip implementations
+
+---

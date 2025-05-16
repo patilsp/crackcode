@@ -1,0 +1,237 @@
+---
+title: Next.js
+description: Master Next.js fundamentals and advanced concepts for modern web development.
+---
+
+## 🌐 Introduction 
+
+Next.js is a React framework that enables server-side rendering, static site generation, and other performance optimizations for React applications. It provides a great developer experience with features like file-based routing, API routes, and built-in optimizations.
+
+## 📚 Next.js Core Concepts
+
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mt-6">
+
+### 🎯 Fundamentals
+- File-based Routing
+- Pages and Layouts
+- Data Fetching
+- Image Optimization
+- Font Optimization
+- Static and Dynamic Routes
+
+### 🎨 Advanced Features
+- Server Components
+- Client Components
+- Server Actions
+- Middleware
+- API Routes
+- Edge Runtime
+
+### ⚡ Performance & Optimization
+- Static Site Generation (SSG)
+- Server-Side Rendering (SSR)
+- Incremental Static Regeneration (ISR)
+- Route Prefetching
+- Code Splitting
+- Bundle Analysis
+
+### 🛠️ Development & Deployment
+- Development Environment
+- Environment Variables
+- Build Configuration
+- Deployment Options
+- Monitoring & Analytics
+- Testing Strategies
+
+</div>
+
+---
+
+## 🎯 Key Next.js Features
+
+### 1. App Router
+The new App Router in Next.js 13+ provides a more intuitive and powerful routing system:
+```typescript
+app/
+  layout.tsx
+  page.tsx
+  about/
+    page.tsx
+  blog/
+    [slug]/
+      page.tsx
+```
+
+### 2. Server Components
+React Server Components allow you to write UI that can be rendered and cached on the server:
+```typescript
+// app/page.tsx
+export default async function Page() {
+  const data = await fetchData();
+  return <div>{data}</div>;
+}
+```
+
+### 3. Data Fetching
+Next.js provides multiple ways to fetch data:
+```typescript
+// Server Component
+async function getData() {
+  const res = await fetch('https://api.example.com/data');
+  return res.json();
+}
+
+// Client Component
+'use client';
+function ClientComponent() {
+  const [data, setData] = useState();
+  useEffect(() => {
+    fetch('/api/data').then(res => res.json()).then(setData);
+  }, []);
+}
+```
+
+### 4. Image Optimization
+Next.js provides an optimized Image component:
+```typescript
+import Image from 'next/image';
+
+export default function Page() {
+  return (
+    <Image
+      src="/image.jpg"
+      alt="Description"
+      width={500}
+      height={300}
+      priority
+    />
+  );
+}
+```
+
+### 5. API Routes
+Create API endpoints within your Next.js application:
+```typescript
+// app/api/hello/route.ts
+export async function GET() {
+  return Response.json({ message: 'Hello World' });
+}
+```
+
+### 6. Middleware
+Add custom logic to your application:
+```typescript
+// middleware.ts
+export function middleware(request: NextRequest) {
+  return NextResponse.redirect(new URL('/home', request.url));
+}
+```
+
+### 7. Environment Variables
+Configure environment variables for different environments:
+```bash
+# .env.local
+DATABASE_URL=your_database_url
+API_KEY=your_api_key
+```
+
+### 8. Static and Dynamic Rendering
+Choose the right rendering strategy:
+```typescript
+// Static Page
+export default function StaticPage() {
+  return <div>Static Content</div>;
+}
+
+// Dynamic Page
+export const dynamic = 'force-dynamic';
+export default function DynamicPage() {
+  return <div>Dynamic Content</div>;
+}
+```
+
+### 9. Route Handlers
+Handle HTTP requests in your application:
+```typescript
+// app/api/route.ts
+export async function POST(request: Request) {
+  const data = await request.json();
+  return Response.json({ data });
+}
+```
+
+### 10. Metadata API
+Manage metadata for your pages:
+```typescript
+// app/layout.tsx
+export const metadata = {
+  title: 'My App',
+  description: 'Welcome to my app',
+};
+```
+
+## 🎨 Best Practices
+
+### 1. Project Structure
+```
+my-next-app/
+├── app/
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── (routes)/
+├── components/
+│   ├── ui/
+│   └── features/
+├── lib/
+│   └── utils.ts
+├── public/
+│   └── assets/
+└── styles/
+    └── globals.css
+```
+
+### 2. Performance Optimization
+- Use Server Components when possible
+- Implement proper caching strategies
+- Optimize images and fonts
+- Use route prefetching
+- Implement proper error boundaries
+
+### 3. Security Considerations
+- Implement proper authentication
+- Use environment variables
+- Sanitize user input
+- Implement proper CORS policies
+- Use secure headers
+
+### 4. Development Workflow
+- Use TypeScript
+- Implement proper testing
+- Use ESLint and Prettier
+- Implement CI/CD
+- Use proper version control
+
+## 🛠️ Deployment Options
+
+### 1. Vercel (Recommended)
+- Zero configuration
+- Automatic deployments
+- Edge functions
+- Analytics
+- Monitoring
+
+### 2. Self-Hosting
+- Docker containers
+- Custom server
+- CDN integration
+- Custom domain
+- SSL configuration
+
+### 3. Other Platforms
+- Netlify
+- AWS Amplify
+- Digital Ocean
+- Heroku
+- Custom VPS
+
+---
