@@ -1,0 +1,730 @@
+---
+title: Node.js
+description: Master Node.js fundamentals and advanced concepts for modern web development.
+---
+
+## 🌐 Introduction 
+
+Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. It allows developers to run JavaScript on the server-side, enabling the development of scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient.
+
+## 📚 Node.js Core Concepts
+
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mt-6">
+
+### 🎯 Fundamentals
+- Event Loop
+- Asynchronous Programming
+- Streams
+- Buffers
+- File System
+- Modules
+
+### 🎨 Advanced Features
+- Clustering
+- Worker Threads
+- Child Processes
+- Memory Management
+- Performance Optimization
+- Security Best Practices
+
+### ⚡ Web Development
+- Express.js
+- REST APIs
+- WebSockets
+- Authentication
+- Database Integration
+- API Design
+
+### 🛠️ Development & Tools
+- npm & yarn
+- Debugging
+- Testing
+- Deployment
+- Monitoring
+- Logging
+
+</div>
+
+---
+
+## 🎯 Key Node.js Features
+
+### 1. Event Loop
+Understanding Node.js event-driven architecture:
+```javascript
+// Event Loop Example
+console.log('Start');
+
+setTimeout(() => {
+  console.log('Timeout 1');
+}, 0);
+
+setImmediate(() => {
+  console.log('Immediate 1');
+});
+
+process.nextTick(() => {
+  console.log('Next Tick 1');
+});
+
+console.log('End');
+```
+
+### 2. Asynchronous Programming
+Working with async operations:
+```javascript
+// Callbacks
+fs.readFile('file.txt', (err, data) => {
+  if (err) throw err;
+  console.log(data);
+});
+
+// Promises
+const readFilePromise = () => {
+  return new Promise((resolve, reject) => {
+    fs.readFile('file.txt', (err, data) => {
+      if (err) reject(err);
+      resolve(data);
+    });
+  });
+};
+
+// Async/Await
+async function readFileAsync() {
+  try {
+    const data = await fs.promises.readFile('file.txt');
+    console.log(data);
+  } catch (err) {
+    console.error(err);
+  }
+}
+```
+
+### 3. Streams
+Working with data streams:
+```javascript
+// Readable Stream
+const readableStream = fs.createReadStream('input.txt');
+readableStream.on('data', (chunk) => {
+  console.log('Received chunk:', chunk);
+});
+
+// Writable Stream
+const writableStream = fs.createWriteStream('output.txt');
+writableStream.write('Hello World');
+writableStream.end();
+
+// Piping Streams
+fs.createReadStream('input.txt')
+  .pipe(fs.createWriteStream('output.txt'));
+```
+
+### 4. Express.js
+Building web applications:
+```javascript
+const express = require('express');
+const app = express();
+
+// Middleware
+app.use(express.json());
+
+// Routes
+app.get('/api/users', (req, res) => {
+  res.json({ users: [] });
+});
+
+app.post('/api/users', (req, res) => {
+  const user = req.body;
+  // Save user
+  res.status(201).json(user);
+});
+
+// Error handling
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
+app.listen(3000, () => {
+  console.log('Server running on port 3000');
+});
+```
+
+### 5. Database Integration
+Working with databases:
+```javascript
+// MongoDB with Mongoose
+const mongoose = require('mongoose');
+
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  age: Number
+});
+
+const User = mongoose.model('User', userSchema);
+
+async function createUser() {
+  const user = new User({
+    name: 'John Doe',
+    email: 'john@example.com',
+    age: 30
+  });
+  await user.save();
+}
+
+// PostgreSQL with Sequelize
+const { Sequelize, DataTypes } = require('sequelize');
+const sequelize = new Sequelize('database', 'user', 'password', {
+  host: 'localhost',
+  dialect: 'postgres'
+});
+
+const User = sequelize.define('User', {
+  name: DataTypes.STRING,
+  email: DataTypes.STRING,
+  age: DataTypes.INTEGER
+});
+```
+
+### 6. Authentication
+Implementing authentication:
+```javascript
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+
+// Password hashing
+async function hashPassword(password) {
+  const salt = await bcrypt.genSalt(10);
+  return bcrypt.hash(password, salt);
+}
+
+// JWT token generation
+function generateToken(user) {
+  return jwt.sign(
+    { id: user.id, email: user.email },
+    process.env.JWT_SECRET,
+    { expiresIn: '1h' }
+  );
+}
+
+// Authentication middleware
+function authenticateToken(req, res, next) {
+  const token = req.headers['authorization']?.split(' ')[1];
+  if (!token) return res.sendStatus(401);
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    if (err) return res.sendStatus(403);
+    req.user = user;
+    next();
+  });
+}
+```
+
+### 7. Error Handling
+Proper error handling in Node.js:
+```javascript
+// Custom error class
+class AppError extends Error {
+  constructor(message, statusCode) {
+    super(message);
+    this.statusCode = statusCode;
+    this.status = `${statusCode}`.startsWith('4') ? 'fail' : 'error';
+    this.isOperational = true;
+
+    Error.captureStackTrace(this, this.constructor);
+  }
+}
+
+// Error handling middleware
+function errorHandler(err, req, res, next) {
+  err.statusCode = err.statusCode || 500;
+  err.status = err.status || 'error';
+
+  if (process.env.NODE_ENV === 'development') {
+    res.status(err.statusCode).json({
+      status: err.status,
+      error: err,
+      message: err.message,
+      stack: err.stack
+    });
+  } else {
+    res.status(err.statusCode).json({
+      status: err.status,
+      message: err.message
+    });
+  }
+}
+```
+
+### 8. Testing
+Writing tests for Node.js applications:
+```javascript
+// Jest test example
+const request = require('supertest');
+const app = require('./app');
+
+describe('User API', () => {
+  test('GET /api/users', async () => {
+    const response = await request(app)
+      .get('/api/users')
+      .expect('Content-Type', /json/)
+      .expect(200);
+
+    expect(response.body).toHaveProperty('users');
+  });
+
+  test('POST /api/users', async () => {
+    const user = {
+      name: 'John Doe',
+      email: 'john@example.com'
+    };
+
+    const response = await request(app)
+      .post('/api/users')
+      .send(user)
+      .expect('Content-Type', /json/)
+      .expect(201);
+
+    expect(response.body).toHaveProperty('id');
+  });
+});
+```
+
+## 🎨 Best Practices
+
+### 1. Project Structure
+```
+my-node-app/
+├── src/
+│   ├── config/
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── middleware/
+│   ├── utils/
+│   └── app.js
+├── tests/
+├── logs/
+└── package.json
+```
+
+### 2. Code Organization
+- Use modular architecture
+- Implement proper error handling
+- Follow RESTful API design
+- Use environment variables
+- Implement proper logging
+- Follow security best practices
+
+### 3. Performance
+- Use proper caching strategies
+- Implement connection pooling
+- Use compression
+- Optimize database queries
+- Implement proper indexing
+- Use proper error handling
+
+### 4. Security
+- Implement proper authentication
+- Use HTTPS
+- Implement rate limiting
+- Sanitize user input
+- Use security headers
+- Implement proper CORS
+
+## 🛠️ Development Tools
+
+### 1. Essential Tools
+- npm/yarn
+- nodemon
+- ESLint
+- Prettier
+- Jest
+- Postman
+
+### 2. Monitoring Tools
+- PM2
+- New Relic
+- Datadog
+- Winston
+- Morgan
+- Sentry
+
+### 3. Development Tools
+- VS Code
+- Docker
+- Git
+- Postman
+- MongoDB Compass
+- pgAdmin
+
+---
+## 📝 Advanced Node.js Interview Questions
+
+### 1. Explain the Node.js Event Loop in Detail
+**Q: How does the Node.js Event Loop work and what are its phases?**
+
+**A:** The Node.js Event Loop is a mechanism that allows Node.js to perform non-blocking I/O operations despite JavaScript being single-threaded. Here's a detailed explanation:
+
+```javascript
+// Example demonstrating Event Loop phases
+console.log('Start');
+
+// Timer phase
+setTimeout(() => {
+  console.log('Timer 1');
+}, 0);
+
+// I/O callbacks phase
+fs.readFile('file.txt', () => {
+  console.log('I/O 1');
+  
+  // Check phase
+  setImmediate(() => {
+    console.log('Immediate 1');
+  });
+});
+
+// Poll phase
+const server = http.createServer((req, res) => {
+  console.log('Poll 1');
+  res.end('Hello');
+});
+
+// Close callbacks phase
+server.on('close', () => {
+  console.log('Close 1');
+});
+
+console.log('End');
+```
+
+The Event Loop has six phases:
+1. **Timers**: Executes callbacks scheduled by `setTimeout()` and `setInterval()`
+2. **Pending callbacks**: Executes I/O callbacks deferred to the next loop iteration
+3. **Idle, prepare**: Used internally by Node.js
+4. **Poll**: Retrieves new I/O events and executes I/O related callbacks
+5. **Check**: Executes callbacks scheduled by `setImmediate()`
+6. **Close callbacks**: Executes close event callbacks
+
+### 2. Memory Management and Garbage Collection
+**Q: How does Node.js handle memory management and garbage collection?**
+
+**A:** Node.js uses V8's garbage collection mechanism. Here's an example of memory management:
+
+```javascript
+// Memory leak example
+class MemoryLeak {
+  constructor() {
+    this.data = [];
+  }
+
+  addData(item) {
+    this.data.push(item);
+  }
+}
+
+// Proper memory management
+class ProperMemory {
+  constructor() {
+    this.data = new WeakMap();
+  }
+
+  addData(key, value) {
+    this.data.set(key, value);
+  }
+}
+```
+
+Key points:
+- V8 uses a generational garbage collection strategy
+- Objects are allocated in the "new space" (young generation)
+- Objects that survive multiple collections move to the "old space"
+- `WeakMap` and `WeakSet` allow objects to be garbage collected when no other references exist
+
+### 3. Clustering and Worker Threads
+**Q: What's the difference between clustering and worker threads in Node.js?**
+
+**A:** Here's a comparison of both approaches:
+
+```javascript
+// Clustering example
+const cluster = require('cluster');
+const numCPUs = require('os').cpus().length;
+
+if (cluster.isMaster) {
+  console.log(`Master ${process.pid} is running`);
+
+  // Fork workers
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+
+  cluster.on('exit', (worker) => {
+    console.log(`Worker ${worker.process.pid} died`);
+  });
+} else {
+  // Workers can share any TCP connection
+  require('./server.js');
+}
+
+// Worker Threads example
+const { Worker, isMainThread, parentPort } = require('worker_threads');
+
+if (isMainThread) {
+  const worker = new Worker(__filename);
+  worker.on('message', (msg) => {
+    console.log('From worker:', msg);
+  });
+  worker.postMessage('Hello Worker');
+} else {
+  parentPort.on('message', (msg) => {
+    console.log('From main:', msg);
+    parentPort.postMessage('Hello Main');
+  });
+}
+```
+
+Key differences:
+- Clustering creates multiple instances of the Node.js process
+- Worker threads share memory and are better for CPU-intensive tasks
+- Clustering is better for handling multiple connections
+- Worker threads are better for parallel processing
+
+### 4. Streams and Backpressure
+**Q: How do you handle backpressure in Node.js streams?**
+
+**A:** Here's an example of handling backpressure:
+
+```javascript
+const fs = require('fs');
+
+// Handling backpressure
+function handleBackpressure() {
+  const readStream = fs.createReadStream('input.txt');
+  const writeStream = fs.createWriteStream('output.txt');
+
+  readStream.on('data', (chunk) => {
+    // Check if we need to pause
+    const canContinue = writeStream.write(chunk);
+    
+    if (!canContinue) {
+      readStream.pause();
+    }
+  });
+
+  writeStream.on('drain', () => {
+    readStream.resume();
+  });
+
+  readStream.on('end', () => {
+    writeStream.end();
+  });
+}
+
+// Using pipe (automatically handles backpressure)
+function handleBackpressureWithPipe() {
+  fs.createReadStream('input.txt')
+    .pipe(fs.createWriteStream('output.txt'));
+}
+```
+
+### 5. Security Best Practices
+**Q: What are the key security considerations when building Node.js applications?**
+
+**A:** Here's an example of implementing security best practices:
+
+```javascript
+const express = require('express');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+const xss = require('xss-clean');
+
+const app = express();
+
+// Security middleware
+app.use(helmet()); // Security headers
+app.use(xss()); // XSS protection
+app.use(express.json({ limit: '10kb' })); // Body limit
+
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100 // limit each IP to 100 requests per windowMs
+});
+app.use('/api', limiter);
+
+// Input sanitization
+const sanitizeInput = (req, res, next) => {
+  if (req.body) {
+    Object.keys(req.body).forEach(key => {
+      req.body[key] = sanitize(req.body[key]);
+    });
+  }
+  next();
+};
+
+// CORS configuration
+app.use(cors({
+  origin: 'https://yourdomain.com',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+```
+
+### 6. Performance Optimization
+**Q: How do you optimize Node.js application performance?**
+
+**A:** Here are key optimization techniques:
+
+```javascript
+// Caching example
+const NodeCache = require('node-cache');
+const cache = new NodeCache({ stdTTL: 600 });
+
+async function getCachedData(key) {
+  const cachedData = cache.get(key);
+  if (cachedData) return cachedData;
+
+  const data = await fetchData();
+  cache.set(key, data);
+  return data;
+}
+
+// Connection pooling
+const pool = new Pool({
+  max: 20,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 2000,
+});
+
+// Compression
+app.use(compression());
+
+// Load balancing
+const cluster = require('cluster');
+const numCPUs = require('os').cpus().length;
+
+if (cluster.isMaster) {
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+}
+```
+
+### 7. Error Handling and Logging
+**Q: How do you implement comprehensive error handling and logging in Node.js?**
+
+**A:** Here's a robust error handling and logging implementation:
+
+```javascript
+const winston = require('winston');
+const { format } = winston;
+
+// Custom error class
+class AppError extends Error {
+  constructor(message, statusCode) {
+    super(message);
+    this.statusCode = statusCode;
+    this.status = `${statusCode}`.startsWith('4') ? 'fail' : 'error';
+    this.isOperational = true;
+    Error.captureStackTrace(this, this.constructor);
+  }
+}
+
+// Logger configuration
+const logger = winston.createLogger({
+  level: 'info',
+  format: format.combine(
+    format.timestamp(),
+    format.json()
+  ),
+  transports: [
+    new winston.transports.File({ filename: 'error.log', level: 'error' }),
+    new winston.transports.File({ filename: 'combined.log' })
+  ]
+});
+
+// Error handling middleware
+function errorHandler(err, req, res, next) {
+  err.statusCode = err.statusCode || 500;
+  err.status = err.status || 'error';
+
+  logger.error({
+    message: err.message,
+    stack: err.stack,
+    statusCode: err.statusCode
+  });
+
+  if (process.env.NODE_ENV === 'development') {
+    res.status(err.statusCode).json({
+      status: err.status,
+      error: err,
+      message: err.message,
+      stack: err.stack
+    });
+  } else {
+    res.status(err.statusCode).json({
+      status: err.status,
+      message: err.message
+    });
+  }
+}
+```
+
+### 8. Testing Strategies
+**Q: What are the best practices for testing Node.js applications?**
+
+**A:** Here's a comprehensive testing approach:
+
+```javascript
+// Unit testing with Jest
+describe('User Service', () => {
+  test('should create user', async () => {
+    const userData = {
+      name: 'John Doe',
+      email: 'john@example.com'
+    };
+    
+    const user = await userService.create(userData);
+    expect(user).toHaveProperty('id');
+    expect(user.name).toBe(userData.name);
+  });
+});
+
+// Integration testing
+describe('User API', () => {
+  test('POST /api/users', async () => {
+    const response = await request(app)
+      .post('/api/users')
+      .send({
+        name: 'John Doe',
+        email: 'john@example.com'
+      });
+    
+    expect(response.status).toBe(201);
+    expect(response.body).toHaveProperty('id');
+  });
+});
+
+// Load testing with Artillery
+const artillery = require('artillery');
+const test = {
+  config: {
+    target: 'http://localhost:3000',
+    phases: [
+      { duration: 60, arrivalRate: 5 }
+    ]
+  },
+  scenarios: [
+    {
+      flow: [
+        { get: { url: '/api/users' } }
+      ]
+    }
+  ]
+};
+```
+
+---
