@@ -2,3 +2,15 @@
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
 @import "tw-animate-css";
+
+
+.data-\[active\=true\]\:text-fd-primary[data-active="true"] {
+    /* color: #51B267; */
+    color: #8546F0;
+    font-weight: 600;
+}
+
+.text-fd-primary {
+    color: #8546F0;
+    font-weight: 600;
+}

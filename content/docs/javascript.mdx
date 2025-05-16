@@ -1,0 +1,88 @@
+---
+title: JavaScript
+description: The ultimate JavaScript interview prep guide. Covers syntax, DOM, async, and modern JS patterns every developer must know.
+---
+
+## ⚡ JavaScript: Interview Essentials
+
+**JavaScript** is the backbone of modern web development. Mastering these concepts will help you ace both **technical screens** and **onsite interviews**.
+
+## 💡 Why JavaScript Interviews Are Tough
+- **Conceptual Depth**: Closures, Prototypes, Event Loop
+- **Practical Skills**: DOM manipulation, API calls
+- **Tricky Gotchas**: Hoisting, `this` binding, type coercion
+
+---
+
+## 🎯 Core Topics (By Priority)
+
+### 🔥 High-Priority (90% of Questions)
+1. **Variables & Scoping**
+   - `var` vs `let`/`const`
+   - Temporal Dead Zone (TDZ)
+   - Block vs Function scope
+
+2. **Functions**
+   - Arrow functions (`=>`)
+   - Higher-Order Functions
+   - IIFEs (Immediately Invoked Function Expressions)
+
+3. **Arrays & Objects**
+   - Destructuring `[...arr]`, `{...obj}`
+   - Essential methods: `map`, `filter`, `reduce`
+
+4. **Asynchronous JS**
+   - Callback Hell ➔ Promises ➔ Async/Await
+   - Fetch API & Error Handling
+
+### ⚡ Medium-Priority
+- **DOM Manipulation**
+  - Event Bubbling/Capturing
+  - `event.preventDefault()`
+  
+- **ES6+**
+  - Template Literals
+  - Optional Chaining (`?.`)
+  - Nullish Coalescing (`??`)
+
+### 🧠 Advanced (Senior Roles)
+- Prototypal Inheritance
+- Memory Management
+- Web Workers
+
+---
+
+## 💼 Interview Pro Tips
+1. **Always Ask Clarifying Questions**  
+   "Should I optimize for time or space complexity?"
+
+2. **Verbalize Your Thought Process**  
+   "First I'll convert the string to an array because..."
+
+3. **Know These Methods Cold**:
+   ```js
+   Array.isArray(), Object.keys(), JSON.parse() 
+   ```
+---
+
+## 🎯 JavaScript Interview Questions & Answers
+
+## 🔥 Beginner Questions
+
+### 1. Difference between `let`, `const`, and `var`
+
+```js
+function declarationTest() {
+  var a = 1;       // Function-scoped
+  let b = 2;       // Block-scoped
+  const c = 3;     // Block-scoped + immutable
+  
+  if (true) {
+    var a = 4;     // Same variable (hoisted)
+    let b = 5;     // New block-scoped variable
+    const c = 6;   // New block-scoped constant
+    console.log(a, b, c); // 4, 5, 6
+  }
+  
+  console.log(a, b, c); // 4, 2, 3 (only 'a' leaked)
+}

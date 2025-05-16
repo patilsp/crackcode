@@ -3,13 +3,15 @@ import { cn } from '@/lib/cn';
 import {
   BatteryChargingIcon,
 } from 'lucide-react';
-import Banner from "@/components/Banner";
+import Banner from '@/components/Banner';
+import Features from '@/components/features';
 
 export default function HomePage() {
   return (
     <main className="flex flex-1 flex-col justify-start text-left">
       <Banner />
-       <div className="flex flex-col border-b border-r md:flex-row *:border-l *:border-t">
+      <Features />
+       {/* <div className="flex flex-col border-b border-r md:flex-row *:border-l *:border-t">
         <div className="group flex flex-col min-w-0 flex-1 pt-8 **:transition-colors">
           <h2 className="text-3xl text-center font-extrabold font-mono uppercase text-fd-muted-foreground mb-4 lg:text-4xl group-hover:text-blue-500">
             Crack The Interview
@@ -22,7 +24,7 @@ export default function HomePage() {
           </div>
         </div>
        
-      </div>
+      </div> */}
     </main>
   );
 }
