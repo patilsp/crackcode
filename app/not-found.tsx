@@ -74,7 +74,7 @@ export default function NotFound() {
           size="lg"
           onClick={() => window.history.back()}
         >
-          Go Back
+          Back
         </Button>
       </motion.div>
     </div>
