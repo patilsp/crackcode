@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import CourseCard from "@/components/course-cards"
-import Calendar from "@/components/calendar"
+
 import StudyPlanCard from "@/components/study-plan-card"
 import TrendingProblems from "@/components/trending-problems"
 import { Flame, Briefcase, Star } from "lucide-react"
@@ -98,13 +98,10 @@ export default function Dashboard() {
             </CardContent>
           </Card>
         </motion.div>
-            {/* Calendar */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
-              <Calendar className="mt-2"/>
-            </motion.div>
+          
 
             {/* Top Companies */}
-            {/* <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
               <Card>
                 <CardContent className="p-4 space-y-3">
                   <h3 className="font-semibold flex items-center gap-2 text-lg"><Briefcase size={18} />Top Companies</h3>
@@ -116,7 +113,7 @@ export default function Dashboard() {
                   ))}
                 </CardContent>
               </Card>
-            </motion.div> */}
+            </motion.div>
 
           </div>
         </div>
