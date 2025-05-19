@@ -1,2 +1,6 @@
-1. npx create-next-app@latest ./
+1. npm create fumadocs-app ./
+
+Run the app in development mode and see http://localhost:3000/docs.
+npm run dev
+
 2. npm install bcrypt mongodb mongoose next-auth
