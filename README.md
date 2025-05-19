@@ -1,5 +1,8 @@
 # crackcode
 
+![image](https://github.com/user-attachments/assets/f3bac54b-1082-4b46-b6ed-491a34900cef)
+
+
 This is a Next.js application generated with
 [Create Fumadocs](https://github.com/fuma-nama/fumadocs).
 
