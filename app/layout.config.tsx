@@ -19,6 +19,7 @@ import {
   Users,
   Rocket,
   TerminalSquare,
+  Star,
 } from 'lucide-react';
 
 export const linkItems: LinkItemType[] = [
@@ -34,6 +35,13 @@ export const linkItems: LinkItemType[] = [
     url: '/contact',
     active: 'url',
   },
+  {
+    icon: <Star />,
+    text: 'Premium',
+    url: '/premium',
+    active: 'url',
+    className: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300 rounded-md px-2 py-1',
+  },  
   {
     type: 'icon',
     url: 'https://github.com/patilsp',

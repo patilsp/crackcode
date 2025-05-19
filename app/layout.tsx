@@ -2,8 +2,9 @@ import './global.css';
 import { RootProvider } from 'fumadocs-ui/provider';
 import { Inter } from 'next/font/google';
 import type { ReactNode } from 'react';
-
+import { Toaster } from "@/components/ui/sonner"
 import SessionProvider from "@/components/Provider";
+import InitUser from '@/components/init-user'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -22,8 +23,10 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={inter.className} suppressHydrationWarning>
        <SessionProvider>
+        <InitUser />
           <body className="flex flex-col min-h-screen">       
-              <RootProvider>{children}</RootProvider>       
+              <RootProvider>{children}</RootProvider>  
+              <Toaster />     
           </body>
         </SessionProvider>
     </html>
