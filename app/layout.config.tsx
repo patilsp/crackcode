@@ -2,6 +2,7 @@ import { type LinkItemType } from 'fumadocs-ui/layouts/docs';
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 import Image from 'next/image';
 import Link from 'next/link';
+import Nav from '@/components/nav'
 
 import {
   BookOpen,
@@ -49,13 +50,16 @@ export const linkItems: LinkItemType[] = [
 export const baseOptions: BaseLayoutProps = {
   nav: {
     title: (
-      <Image
-        src="/assets/images/logo.png"
-        alt="logo"
-        height={80}
-        width={100}
-        className="object-contain"
-      />
+      <div className="flex items-center justify-between w-full">
+        <Image
+          src="/assets/images/logo.png"
+          alt="logo"
+          height={80}
+          width={100}
+          className="object-contain"
+        />
+        <Nav />
+      </div>
     ),
   },
   links: [
