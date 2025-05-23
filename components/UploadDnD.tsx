@@ -53,7 +53,7 @@ export default function UploadDnD() {
                     
                     }}
                     onUploadError={(error: Error) => {
-                        alert(`ERROR! ${error.message}`);
+                        alert(`ERROR! ${error.message}`)
                     }}
                 />
                 {imgList}

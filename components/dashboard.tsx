@@ -90,8 +90,8 @@ export default function Dashboard() {
           <Card className="bg-gradient-to-r from-orange-400 to-red-500 text-white shadow-lg">
             <CardContent className="p-2 pl-4 pr-4 flex justify-between items-center">
               <div>
-                <h2 className="text-lg font-bold mb-1">🔥 Daily Challenge</h2>
-                <p className="text-sm mb-2">Solve today’s challenge: <strong>Valid Anagram</strong></p>
+                <h2 className="text-lg font-bold mb-1">🔥 Daily Quiz</h2>
+                <p className="text-sm mb-2">Solve today’s challenge: <strong>Quiz</strong></p>
                 <Button variant="outline" size="sm">Solve Now</Button>
               </div>
               <Flame className="w-10 h-10 opacity-90" />
