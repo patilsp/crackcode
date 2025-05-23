@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import CourseCard from "@/components/course-cards"
-
+import Link from "next/link"
 import StudyPlanCard from "@/components/study-plan-card"
 import TrendingProblems from "@/components/trending-problems"
 import { Flame, Briefcase, Star } from "lucide-react"
@@ -92,7 +92,24 @@ export default function Dashboard() {
               <div>
                 <h2 className="text-lg font-bold mb-1">🔥 Daily Quiz</h2>
                 <p className="text-sm mb-2">Solve today’s challenge: <strong>Quiz</strong></p>
-                <Button variant="outline" size="sm">Solve Now</Button>
+                <Button variant="outline" size="sm">
+                  <Link href="/quiz">Solve Now</Link>
+                </Button>
+              </div>
+              <Flame className="w-10 h-10 opacity-90" />
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
+          <Card className="bg-gradient-to-r from-purple-400 to-blue-500 text-white shadow-lg">
+            <CardContent className="p-2 pl-4 pr-4 flex justify-between items-center">
+              <div>
+                <h2 className="text-lg font-bold mb-1">Notes</h2>
+                <p className="text-sm mb-2">Programming Notes</p>
+                <Button variant="outline" size="sm">
+                  <Link href="/notes">Read Now</Link>
+                </Button>
               </div>
               <Flame className="w-10 h-10 opacity-90" />
             </CardContent>
