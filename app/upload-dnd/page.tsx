@@ -27,7 +27,7 @@ export default function UploadDnD() {
         </>
     ) : null
 
-    const imgList = `(
+    const imgList = (
         <>
             {title}
             <ul>
