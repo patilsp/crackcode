@@ -18,7 +18,7 @@ import { Loader2 } from "lucide-react"
 
 import usePostStore from '@/store/postStore'
 import { toast } from "sonner"
-import Upload from '@/lib/Upload';
+import Upload from '@/lib/upload';
 
 const PostForm = ({ type, submitting, handleSubmit }) => {
   const { post, setPost } = usePostStore()
@@ -47,8 +47,8 @@ const PostForm = ({ type, submitting, handleSubmit }) => {
                   placeholder="Enter title"
                   value={post.title}
                   onChange={(e) => setPost({ ...post, title: e.target.value })}
+                  required
                 />
-
               </div>
 
               {/* Description */}
@@ -76,8 +76,8 @@ const PostForm = ({ type, submitting, handleSubmit }) => {
                 />
               </div>
 
-              {/* Upload */}
-              {/* <div className="space-y-2">
+              {/* Image Upload */}
+              <div className="space-y-2">
                 <Label htmlFor="upload">Image Upload</Label>
                 <Upload
                   onImageUpload={(fileUrl) =>
@@ -91,18 +91,6 @@ const PostForm = ({ type, submitting, handleSubmit }) => {
                     className="mt-2 w-40 h-40 object-cover rounded border"
                   />
                 )}
-              </div> */}
-
-              {/* Image Path */}
-              <div className="space-y-2">
-                <Label htmlFor="imagePath">Image Path</Label>
-                <Input
-                  id="imagePath"
-                  placeholder="Image Path"
-                  value={post.imagePath || ''}
-                  onChange={(e) => setPost({ ...post, imagePath: e.target.value })}
-                  required
-                />
               </div>
 
               <CardFooter className="flex justify-end border-t py-2">

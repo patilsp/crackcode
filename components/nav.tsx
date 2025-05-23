@@ -45,7 +45,7 @@ const Nav = () => {
   ]
 
   return (
-    <nav className="absolute right-1 z-50">
+    <nav className="absolute right-1 z-50 mr-16 md:[margin-right:330px]">
       <div className="flex items-center gap-4">
         {session?.user ? (
           <DropdownMenu open={isDropdownOpen} onOpenChange={setDropdownOpen}>

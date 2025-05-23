@@ -15,9 +15,9 @@ const PostSchema = new Schema(
       type: String,
       default: '',
     },
-    tag: {
+    category: {
       type: String,
-      required: [true, 'Tag is required.'],
+      required: [true, 'Category is required.'],
     },
     imagePath: {
       type: String,
@@ -25,7 +25,7 @@ const PostSchema = new Schema(
     },
   },
   {
-    timestamps: true, // Adds createdAt and updatedAt fields
+    timestamps: true, 
   }
 );
 
