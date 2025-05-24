@@ -13,7 +13,7 @@ const floatingTechIcons = [
   { icon: Globe, name: "HTML", x: "85%", y: "15%", color: "bg-orange-500", delay: 0.2 },
   { icon: Zap, name: "JS", x: "5%", y: "80%", color: "bg-yellow-500", delay: 0.4 },
   { icon: Smartphone, name: "CSS", x: "90%", y: "75%", color: "bg-purple-500", delay: 0.6 },
-  { icon: Target, name: "Node", x: "5%", y: "35%", color: "bg-green-500", delay: 0.8 },
+  { icon: Target, name: "Node", x: "55%", y: "5%", color: "bg-green-500", delay: 0.8 },
   { icon: BookOpen, name: "Vue", x: "90%", y: "45%", color: "bg-emerald-500", delay: 1.0 },
 ]
 

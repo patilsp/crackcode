@@ -32,7 +32,7 @@ export const linkItems: LinkItemType[] = [
   {
     icon: <NotebookPen />,
     text: 'Contact',
-    url: '/contact',
+    url: '/contact-us',
     active: 'url',
   },
   {
