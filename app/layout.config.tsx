@@ -149,6 +149,12 @@ export const baseOptions: BaseLayoutProps = {
           description: 'Track your learning journey step-by-step.',
           url: '/docs/ui/roadmap',
         },
+        {
+          icon: <Code2 />,
+          text: 'Quiz',
+          description: 'Programming quiz.',
+          url: '/quiz',
+        },
       ],
     },
     ...linkItems,
