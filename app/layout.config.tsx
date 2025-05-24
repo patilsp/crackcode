@@ -109,9 +109,9 @@ export const baseOptions: BaseLayoutProps = {
       items: [
         {
           icon: <BookOpen />,
-          text: 'Docs Guide',
+          text: 'Programming Notes',
           description: 'Master the Crack The Code documentation platform.',
-          url: '/docs/ui',
+          url: '/notes',
         },
         {
           icon: <Files />,

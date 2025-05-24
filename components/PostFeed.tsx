@@ -9,10 +9,13 @@ import { Button } from "@/components/ui/button";
 
 const PostFeed = () => {
   const { posts, fetchPosts } = usePostStore();
+  const [isClient, setIsClient] = useState(false);
 
+ 
   useEffect(() => {
     fetchPosts();
   }, [fetchPosts]);
+  if (!isClient) return null;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-1 gap-6 p-4">

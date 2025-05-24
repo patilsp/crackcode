@@ -9,9 +9,9 @@ import { Code, Laptop } from "lucide-react"
 const floatingTags = [
   { name: "CSS", x: "15%", y: "25%", color: "bg-blue-500", delay: 0 },
   { name: "HTML", x: "75%", y: "15%", color: "bg-orange-500", delay: 0.2 },
-  { name: "React-Js", x: "85%", y: "55%", color: "bg-red-500", delay: 0.4 },
-  { name: "Java Script", x: "10%", y: "55%", color: "bg-yellow-500", delay: 0.6 },
-  { name: "Next-Js", x: "65%", y: "85%", color: "bg-gray-800", delay: 0.6 },
+  { name: "React", x: "80%", y: "54%", color: "bg-red-500", delay: 0.4 },
+  { name: "Java Script", x: "5%", y: "53%", color: "bg-yellow-500", delay: 0.6 },
+  { name: "Next Js", x: "65%", y: "85%", color: "bg-gray-800", delay: 0.6 },
   { name: "Mongo DB", x: "25%", y: "75%", color: "bg-orange-500", delay: 0.2 },
 ]
 
@@ -25,6 +25,7 @@ const spiralElements = Array.from({ length: 20 }, (_, i) => ({
 export default function Subscribe() {
   const [email, setEmail] = useState("")
   const [isSubscribed, setIsSubscribed] = useState(false)
+  const [isClient, setIsClient] = useState(false);
 
   const handleSubscribe = () => {
     if (email) {
@@ -34,84 +35,40 @@ export default function Subscribe() {
     }
   }
 
+
+  // const handleSubscribe = async () => {
+  //   if (!email) return;
+  
+  //   try {
+  //     const res = await fetch("/api/subscribe", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ email }),
+  //     });
+  
+  //     const data = await res.json();
+  
+  //     if (res.status === 201) {
+  //       setIsSubscribed(true);
+  //       setEmail("");
+  //     } else if (res.status === 409) {
+  //       alert("⚠️ You are already subscribed.");
+  //     } else {
+  //       alert("❌ Subscription failed: " + data.message);
+  //     }
+  //   } catch (error) {
+  //     console.error("Subscription error:", error);
+  //     alert("Something went wrong.");
+  //   }
+  // };
+  
+
+  
+  // if (!isClient) return null;
+
   return (
-    <div className="min-h-screen  relative overflow-hidden">
-      {/* Animated Background Spirals */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Left spiral */}
-        <motion.div
-          className="absolute bottom-0 left-0 w-64 h-64"
-          initial={{ rotate: 0, scale: 0 }}
-          animate={{ rotate: 360, scale: 1 }}
-          transition={{ duration: 2, ease: "easeOut" }}
-        >
-          {spiralElements.slice(0, 10).map((element, index) => (
-            <motion.div
-              key={element.id}
-              className="absolute rounded-full"
-              style={{
-                width: element.size,
-                height: element.size,
-                backgroundColor: element.color,
-                left: `${20 + index * 8}%`,
-                top: `${20 + index * 8}%`,
-              }}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 0.7, scale: 1 }}
-              transition={{ delay: element.delay, duration: 0.5 }}
-            />
-          ))}
-        </motion.div>
-
-        {/* Right spiral */}
-        <motion.div
-          className="absolute top-0 right-0 w-64 h-64"
-          initial={{ rotate: 0, scale: 0 }}
-          animate={{ rotate: -360, scale: 1 }}
-          transition={{ duration: 2, ease: "easeOut", delay: 0.5 }}
-        >
-          {spiralElements.slice(10).map((element, index) => (
-            <motion.div
-              key={element.id}
-              className="absolute rounded-full"
-              style={{
-                width: element.size,
-                height: element.size,
-                backgroundColor: element.color,
-                right: `${20 + index * 8}%`,
-                bottom: `${20 + index * 8}%`,
-              }}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 0.7, scale: 1 }}
-              transition={{ delay: element.delay + 0.5, duration: 0.5 }}
-            />
-          ))}
-        </motion.div>
-      </div>
-
-      {/* Header */}
-      <motion.header
-        className="flex justify-between items-center relative z-10"
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="flex items-center gap-2">
-          {/* <motion.div
-            className="w-8 h-8 bg-gradient-to-r from-purple-600 to-blue-600 rounded flex items-center justify-center"
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          >
-            <Code className="w-5 h-5 text-white" />
-          </motion.div> */}
-          {/* <span className="text-xl font-bold text-gray-800">
-            Crack <span className="text-purple-600">The Code</span>
-          </span> */}
-        </div>
+    <div className="min-h-screen  mt-10 relative overflow-hidden">
       
-      </motion.header>
-
-      {/* Main Content */}
       <div className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] px-6 relative z-10">
         {/* Floating Programming Language Tags */}
         {floatingTags.map((tag, index) => (
@@ -244,8 +201,8 @@ export default function Subscribe() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2.4, duration: 0.6 }}
         >
-          <h1 className="text-3xl font-bold text-gray-800 mb-2 mt-5">Want daily coding challenges?</h1>
-          <p className="text-gray-600 text-lg">subscribe now</p>
+          <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2 mt-5">Want daily coding challenges?</h1>
+          <p className="text-gray-600 dark:text-gray-400 text-lg">subscribe now</p>
         </motion.div>
 
         {/* Subscription Form */}
