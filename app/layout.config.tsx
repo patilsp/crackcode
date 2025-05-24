@@ -63,7 +63,7 @@ export const baseOptions: BaseLayoutProps = {
   links: [
     {
       type: 'menu',
-      text: 'Languages',
+      text: 'Programming',
       items: [
         {
           icon: <FileText />,

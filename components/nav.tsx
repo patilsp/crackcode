@@ -40,7 +40,7 @@ const Nav = () => {
 
   const menuItems = [
     { label: "Dashboard", href: "/", icon: <Home className="mr-2 h-4 w-4" />, id: "dashboard" },
-    { label: "My Profile", href: "/profile", icon: <User className="mr-2 h-4 w-4" />, id: "profile" },
+    { label: "My Profile", href: "/my-profile", icon: <User className="mr-2 h-4 w-4" />, id: "profile" },
     { label: "Settings", href: "/settings", icon: <Settings className="mr-2 h-4 w-4" />, id: "settings" },
   ]
 
@@ -96,7 +96,7 @@ const Nav = () => {
                 >
                   <DropdownMenuLabel className="flex items-center gap-3 p-3">
                     <Avatar className="h-10 w-10 border-2 border-primary/20">
-                      <AvatarImage src={session.user.image || "/placeholder.svg"} alt={session.user.name || "User"} />
+                      <AvatarImage src={session.user.image || "/assets/images/avatar.jpg"} alt={session.user.name || "User"} />
                       <AvatarFallback className="bg-primary/10 text-primary">
                         {session.user.name ? session.user.name.charAt(0).toUpperCase() : "U"}
                       </AvatarFallback>
