@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Progress } from "@/components/ui/progress"
-import { Calendar } from "@/components/ui/calendar"
+
 import {
   Search,
   Filter,
@@ -344,15 +344,7 @@ const topics = [
 
         {/* Right Sidebar */}
         <div className="w-80 p-6 space-y-6">
-          {/* Calendar */}
-          <Card className=" border-gray-700">
-            <CardHeader className="">
-              <CardTitle className="">Day 5 Streak!</CardTitle>
-            </CardHeader>
-            <CardContent className="p-1">
-              <Calendar mode="single" selected={date} onSelect={setDate} className="rounded-md border-0" />
-            </CardContent>
-          </Card>
+       
 
           {/* Study Plan */}
           <Card className="bg-white dark:bg-black">
